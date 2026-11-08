@@ -1,7 +1,10 @@
 import './App.css'
 import { Folder, FileHeart, ChevronDown, ChevronRight, ArrowUpRight } from "lucide-react"
+import { useState } from 'react'
 
 function App() {
+    const [isRootOpen, setIsRootOpen] = useState(true)
+
     return (
         <div className="app">
             <header className="top-navigation">
@@ -19,13 +22,17 @@ function App() {
                     </div>
 
                     <div className="folder">
-                        <div className="folder-name">
-                            <ChevronDown size={14} />
+                        <div
+                            className="folder-name"
+                            onClick={() => setIsRootOpen(!isRootOpen)}>
+                            {isRootOpen ? (<ChevronDown size={14} />) : (<ChevronRight size={14} />)}
                             theresa.portfolio
                         </div>
 
-                        <div className="folder-content">
-                            <div className="file">
+                        {isRootOpen && (
+                            <div className="folder-content">
+
+                            <div className="file active-file">
                                 <FileHeart size={14} />
                                 README.md
                             </div>
@@ -61,6 +68,7 @@ function App() {
                                 contact.md
                             </div>
                         </div>
+                        )}
                     </div>
                 </aside>
 

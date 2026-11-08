@@ -7,6 +7,22 @@ body {
   font-family: Arial, sans-serif;
 }
 
+/*
+.app is the outermost container
+.top-navigation is child of .app
+.workspace is child of .app
+.status-bar is child of .app
+.activity-bar, .file-explorer, .editor child of .workspace
+
+so in .app, take all child & arrange vertically
+then, in .workspace, take all child & arrange horizontally
+
+flex-direction: row = side by side
+flex-direction: column = stacked vertically (used for .app)
+
+for .workspace, no flex direction listed = default = row
+*/
+
 .app {
   min-height: 100vh;
   display: flex;
@@ -44,10 +60,22 @@ body {
   padding: 20px;
 }
 
+.explore-header {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+  color: #77758a
+}
+
 .editor {
   flex: 1;
   padding: 32px;
 }
+/*
+.editor where flex: 1; tells editor to take up remaining available horizontal space
+after activity bar & file explorer take their widths
+ */
 
 .status-bar {
   height: 28px;
@@ -63,12 +91,16 @@ this creates 1. bold + spaces. 2. light file font
   align-items: center;
   gap: 7px;
   font-size: 13px;
-  font-weight: 600;
-  padding: 7px 0;
+  font-weight: 500;
+  padding: 8px 6px;
   cursor: pointer;
+  color: #454358;
+  border-radius: 20px;
 }
 
 .folder-content {
+  display: flex;
+  flex-direction: column;
   padding-left: 14px;
 }
 
@@ -77,7 +109,19 @@ this creates 1. bold + spaces. 2. light file font
   align-items: center;
   gap: 7px;
   font-size: 13px;
-  padding: 7px 0;
+  padding: 8px 6px;
   color: #55536a;
   cursor: pointer;
+  border-radius: 20px;
+}
+
+.file:hover,
+.folder-name:hover {
+  background-color: #f3f1f8;
+}
+
+.active-file {
+  background-color: #e8f0fe;
+  color: #2563eb;
+  font-weight: 600;
 }
