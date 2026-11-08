@@ -59,6 +59,9 @@ body {
 this creates 1. bold + spaces. 2. light file font
  */
 .folder-name {
+  display: flex;
+  align-items: center;
+  gap: 7px;
   font-size: 13px;
   font-weight: 600;
   padding: 7px 0;
@@ -70,6 +73,9 @@ this creates 1. bold + spaces. 2. light file font
 }
 
 .file {
+  display: flex;
+  align-items: center;
+  gap: 7px;
   font-size: 13px;
   padding: 7px 0;
   color: #55536a;

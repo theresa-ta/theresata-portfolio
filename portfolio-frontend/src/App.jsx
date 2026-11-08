@@ -1,5 +1,5 @@
 import './App.css'
-import { FileText, Folder, ChevronDown, ChevronRight } from "lucide-react"
+import { Folder, FileHeart, ChevronDown, ChevronRight, ArrowUpRight } from "lucide-react"
 
 function App() {
     return (
@@ -19,18 +19,47 @@ function App() {
                     </div>
 
                     <div className="folder">
-                        <div className="folder-name">▾ theresa.portfolio</div>
+                        <div className="folder-name">
+                            <ChevronDown size={14} />
+                            theresa.portfolio
+                        </div>
 
                         <div className="folder-content">
-                            <div className="file">📄 README.md</div>
+                            <div className="file">
+                                <FileHeart size={14} />
+                                README.md
+                            </div>
 
-                            <div className="folder-name">▸ about-me</div>
-                            <div className="folder-name">▸ projects</div>
-                            <div className="folder-name">▸ skills</div>
-                            <div className="folder-name">▸ education</div>
-                            <div className="folder-name">▸ experience</div>
+                            <div className="folder-name">
+                                <ChevronRight size={14} />
+                                <Folder size={14} />
+                                about-me
+                            </div>
+                            <div className="folder-name">
+                                <ChevronRight size={14} />
+                                <Folder size={14} />
+                                projects
+                            </div>
+                            <div className="folder-name">
+                                <ChevronRight size={14} />
+                                <Folder size={14} />
+                                skills
+                            </div>
+                            <div className="folder-name">
+                                <ChevronRight size={14} />
+                                <Folder size={14} />
+                                education
+                            </div>
+                            <div className="folder-name">
+                                <ChevronRight size={14} />
+                                <Folder size={14} />
+                                experience
+                            </div>
 
-                            <div className="file">📄 contact.md</div>
+                            <div className="file">
+                                <ArrowUpRight size={14} />
+                                contact.md
+                            </div>
                         </div>
                     </div>
                 </aside>
