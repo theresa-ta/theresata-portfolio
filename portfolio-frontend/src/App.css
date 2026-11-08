@@ -55,3 +55,23 @@ body {
   padding: 5px 16px;
   font-size: 12px;
 }
+/*
+this creates 1. bold + spaces. 2. light file font
+ */
+.folder-name {
+  font-size: 13px;
+  font-weight: 600;
+  padding: 7px 0;
+  cursor: pointer;
+}
+
+.folder-content {
+  padding-left: 14px;
+}
+
+.file {
+  font-size: 13px;
+  padding: 7px 0;
+  color: #55536a;
+  cursor: pointer;
+}
