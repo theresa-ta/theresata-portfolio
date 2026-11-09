@@ -4,6 +4,7 @@ import { useState } from 'react'
 
 function App() {
     const [isRootOpen, setIsRootOpen] = useState(true)
+    const [isProjectsOpen, setIsProjectsOpen] = useState(false)
 
     return (
         <div className="app">
@@ -42,11 +43,19 @@ function App() {
                                 <Folder size={14} />
                                 about-me
                             </div>
-                            <div className="folder-name">
-                                <ChevronRight size={14} />
+
+                            <div className="folder-name"
+                                onClick={() => setIsProjectsOpen(!isProjectsOpen)}>
+                                {isProjectsOpen ? (<ChevronDown size={14} />) : (<ChevronRight size={14} />)}
                                 <Folder size={14} />
                                 projects
                             </div>
+                            {isProjectsOpen && (
+                                <div className="folder-content">
+                                    Testing projects folder
+                                </div>
+                            )}
+
                             <div className="folder-name">
                                 <ChevronRight size={14} />
                                 <Folder size={14} />

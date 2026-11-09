@@ -4,7 +4,10 @@
 
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  /*
+  font-family: Arial, sans-serif
+   */
+  font-family: Consolas, "Courier New", monospace;
 }
 
 /*
@@ -27,13 +30,13 @@ for .workspace, no flex direction listed = default = row
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #f8f7fb;
+  background-color: #FFFFFF;
   color: #25243a;
 }
 
 .top-navigation {
   height: 55px;
-  background-color: #ffffff;
+  background-color: #FAF6FB;
   border-bottom: 1px solid #e7e5ed;
   display: flex;
   align-items: center;
@@ -48,14 +51,14 @@ for .workspace, no flex direction listed = default = row
 
 .activity-bar {
   width: 65px;
-  background-color: #f0eef6;
+  background-color: #F8EAF2;
   border-right: 1px solid #e7e5ed;
   padding: 20px 10px;
 }
 
 .file-explorer {
   width: 240px;
-  background-color: #ffffff;
+  background-color: #F8F5FC;
   border-right: 1px solid #e7e5ed;
   padding: 20px;
 }
