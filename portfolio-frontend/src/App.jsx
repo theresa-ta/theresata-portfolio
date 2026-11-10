@@ -4,7 +4,12 @@ import { useState } from 'react'
 
 function App() {
     const [isRootOpen, setIsRootOpen] = useState(true)
+    const [isAboutMeOpen, setIsAboutMeOpen] = useState(false)
     const [isProjectsOpen, setIsProjectsOpen] = useState(false)
+    const [isSkillsOpen, setIsSkillsOpen] = useState(false)
+    const [isEducationOpen, setIsEducationOpen] = useState(false)
+    const [isExperienceOpen, setIsExperienceOpen] = useState(false)
+
 
     return (
         <div className="app">
@@ -38,11 +43,17 @@ function App() {
                                 README.md
                             </div>
 
-                            <div className="folder-name">
-                                <ChevronRight size={14} />
+                            <div className="folder-name"
+                                onClick={() => setIsAboutMeOpen(!isAboutMeOpen)}>
+                                {isAboutMeOpen ? (<ChevronDown size={14} />) : (<ChevronRight size={14} />)}
                                 <Folder size={14} />
                                 about-me
                             </div>
+                            {isAboutMeOpen && (
+                                 <div className="folder-content">
+                                    Testing about-me folder
+                                 </div>
+                            )}
 
                             <div className="folder-name"
                                 onClick={() => setIsProjectsOpen(!isProjectsOpen)}>
@@ -56,21 +67,42 @@ function App() {
                                 </div>
                             )}
 
-                            <div className="folder-name">
-                                <ChevronRight size={14} />
+                            <div className="folder-name"
+                                onClick={() => setIsSkillsOpen(!isSkillsOpen)}>
+                                {isSkillsOpen ? (<ChevronDown size={14} />) : (<ChevronRight size={14} />)}
                                 <Folder size={14} />
                                 skills
                             </div>
-                            <div className="folder-name">
-                                <ChevronRight size={14} />
+                            {isSkillsOpen && (
+                                <div className="folder-content">
+                                    Testing skills folder
+                                </div>
+                            )}
+
+
+                            <div className="folder-name"
+                                onClick={() => setIsEducationOpen(!isEducationOpen)}>
+                                {isEducationOpen ? (<ChevronDown size={14} />) : (<ChevronRight size={14} />)}
                                 <Folder size={14} />
                                 education
                             </div>
-                            <div className="folder-name">
-                                <ChevronRight size={14} />
+                            {isEducationOpen && (
+                                <div className="folder-content">
+                                    Testing education folder
+                                </div>
+                            )}
+
+                            <div className="folder-name"
+                                onClick={() => setIsExperienceOpen(!isExperienceOpen)}>
+                                {isEducationOpen ? (<ChevronDown size={14} />) : (<ChevronRight size={14}  />)}
                                 <Folder size={14} />
                                 experience
                             </div>
+                            {isExperienceOpen && (
+                                <div className="folder-content">
+                                    Testing experience folder
+                                </div>
+                            )}
 
                             <div className="file">
                                 <ArrowUpRight size={14} />
