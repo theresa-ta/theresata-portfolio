@@ -50,8 +50,11 @@ function App() {
                                 about-me
                             </div>
                             {isAboutMeOpen && (
-                                 <div className="folder-content">
-                                    Testing about-me folder
+                                <div className="folder-content">
+                                    <div className="file">
+                                        <FileHeart size={14} />
+                                        about-me.md
+                                    </div>
                                  </div>
                             )}
 
@@ -63,7 +66,10 @@ function App() {
                             </div>
                             {isProjectsOpen && (
                                 <div className="folder-content">
-                                    Testing projects folder
+                                    <div className="file">
+                                        <FileHeart size={14} />
+                                        projects.md
+                                    </div>
                                 </div>
                             )}
 
@@ -75,7 +81,10 @@ function App() {
                             </div>
                             {isSkillsOpen && (
                                 <div className="folder-content">
-                                    Testing skills folder
+                                    <div className="file">
+                                        <FileHeart size={14} />
+                                        skills.md
+                                    </div>
                                 </div>
                             )}
 
@@ -88,7 +97,10 @@ function App() {
                             </div>
                             {isEducationOpen && (
                                 <div className="folder-content">
-                                    Testing education folder
+                                    <div className="file">
+                                        <FileHeart size={14} />
+                                        education.md
+                                    </div>
                                 </div>
                             )}
 
@@ -100,7 +112,10 @@ function App() {
                             </div>
                             {isExperienceOpen && (
                                 <div className="folder-content">
-                                    Testing experience folder
+                                    <div className="file">
+                                        <FileHeart size={14} />
+                                        experience.md
+                                    </div>
                                 </div>
                             )}
 

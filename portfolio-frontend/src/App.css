@@ -107,6 +107,10 @@ this creates 1. bold + spaces. 2. light file font
   padding-left: 14px;
 }
 
+.nested-files {
+  padding-left: 20px;
+}
+
 .file {
   display: flex;
   align-items: center;
