@@ -94,7 +94,7 @@ function App() {
 
                             <div className="folder-name"
                                 onClick={() => setIsExperienceOpen(!isExperienceOpen)}>
-                                {isEducationOpen ? (<ChevronDown size={14} />) : (<ChevronRight size={14}  />)}
+                                {isExperienceOpen ? (<ChevronDown size={14} />) : (<ChevronRight size={14}  />)}
                                 <Folder size={14} />
                                 experience
                             </div>
