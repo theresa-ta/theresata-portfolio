@@ -9,6 +9,7 @@ function App() {
     const [isSkillsOpen, setIsSkillsOpen] = useState(false)
     const [isEducationOpen, setIsEducationOpen] = useState(false)
     const [isExperienceOpen, setIsExperienceOpen] = useState(false)
+    const [selectedFile, setSelectedFile] = useState("README.md")
 
 
     return (
@@ -38,10 +39,12 @@ function App() {
                         {isRootOpen && (
                             <div className="folder-content">
 
-                            <div className="file active-file">
-                                <FileHeart size={14} />
-                                README.md
-                            </div>
+                                <div
+                                    className={selectedFile === "README.md" ? "file active-file" : "file"}
+                                    onClick={() => setSelectedFile("README.md")}>
+                                    <FileHeart size={14} />
+                                    README.md
+                                </div>
 
                             <div className="folder-name"
                                 onClick={() => setIsAboutMeOpen(!isAboutMeOpen)}>
@@ -51,11 +54,13 @@ function App() {
                             </div>
                             {isAboutMeOpen && (
                                 <div className="folder-content">
-                                    <div className="file">
+                                    <div
+                                        className={selectedFile === "about-me.md" ? "file active-file" : "file"}
+                                        onClick={() => setSelectedFile("about-me.md")}>
                                         <FileHeart size={14} />
                                         about-me.md
-                                    </div>
-                                 </div>
+                                     </div>
+                                </div>
                             )}
 
                             <div className="folder-name"
@@ -66,7 +71,9 @@ function App() {
                             </div>
                             {isProjectsOpen && (
                                 <div className="folder-content">
-                                    <div className="file">
+                                    <div
+                                        className={selectedFile === "projects.md" ? "file active-file" : "file"}
+                                        onClick={() => setSelectedFile("projects.md")}>
                                         <FileHeart size={14} />
                                         projects.md
                                     </div>
@@ -81,7 +88,9 @@ function App() {
                             </div>
                             {isSkillsOpen && (
                                 <div className="folder-content">
-                                    <div className="file">
+                                    <div
+                                        className={selectedFile === "skills.md" ? "file active-file" : "file"}
+                                        onClick={() => setSelectedFile("skills.md")}>
                                         <FileHeart size={14} />
                                         skills.md
                                     </div>
@@ -97,7 +106,9 @@ function App() {
                             </div>
                             {isEducationOpen && (
                                 <div className="folder-content">
-                                    <div className="file">
+                                    <div
+                                        className={selectedFile === "education.md" ? "file active-file" : "file"}
+                                        onClick={() => setSelectedFile("education.md")}>
                                         <FileHeart size={14} />
                                         education.md
                                     </div>
@@ -112,7 +123,9 @@ function App() {
                             </div>
                             {isExperienceOpen && (
                                 <div className="folder-content">
-                                    <div className="file">
+                                    <div
+                                        className={selectedFile === "experience.md" ? "file active-file" : "file"}
+                                        onClick={() => setSelectedFile("experience.md")}>
                                         <FileHeart size={14} />
                                         experience.md
                                     </div>
@@ -127,6 +140,7 @@ function App() {
                         )}
                     </div>
                 </aside>
+
 
                 <main className="editor">
                     Editor Area
