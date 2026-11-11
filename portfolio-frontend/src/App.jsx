@@ -10,7 +10,27 @@ function App() {
     const [isEducationOpen, setIsEducationOpen] = useState(false)
     const [isExperienceOpen, setIsExperienceOpen] = useState(false)
     const [selectedFile, setSelectedFile] = useState("README.md")
+    const [openFiles, setOpenFiles] = useState(["README.md"])
+    const fileContents = {
+        "README.md": "Welcome to my portfolio!",
+        "about-me.md": "A little about me...",
+        "projects.md": "Here are my projects.",
+        "skills.md": "My technical skills.",
+        "education.md": "My education.",
+        "experience.md": "My experience."
+    }
 
+    const openFile = (fileName) => {
+        setSelectedFile(fileName)
+
+        setOpenFiles((previousFiles) => {
+            if (previousFiles.includes(fileName)) {
+                return previousFiles
+            }
+
+            return [...previousFiles, fileName]
+        })
+    }
 
     return (
         <div className="app">
@@ -143,7 +163,7 @@ function App() {
 
 
                 <main className="editor">
-                    Editor Area
+                    {fileContents[selectedFile]}
                 </main>
             </div>
 
