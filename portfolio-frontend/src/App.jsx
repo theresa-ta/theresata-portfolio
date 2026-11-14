@@ -1,5 +1,5 @@
 import './App.css'
-import { Folder, FileHeart, ChevronDown, ChevronRight, ArrowUpRight } from "lucide-react"
+import { Folder, FileHeart, ChevronDown, ChevronRight, ArrowUpRight, X } from "lucide-react"
 import { useState } from 'react'
 
 function App() {
@@ -32,6 +32,16 @@ function App() {
         })
     }
 
+    const closeFile = (fileName) => {
+        const updatedFiles = openFiles.filter((file) => file !== fileName)
+
+        setOpenFiles(updatedFiles)
+
+        if (selectedFile === fileName) {
+            setSelectedFile(updatedFiles[updatedFiles.length - 1] || "")
+        }
+    }
+
     return (
         <div className="app">
             <header className="top-navigation">
@@ -61,7 +71,7 @@ function App() {
 
                                 <div
                                     className={selectedFile === "README.md" ? "file active-file" : "file"}
-                                    onClick={() => setSelectedFile("README.md")}>
+                                    onClick={() => openFile("README.md")}>
                                     <FileHeart size={14} />
                                     README.md
                                 </div>
@@ -76,7 +86,7 @@ function App() {
                                 <div className="folder-content">
                                     <div
                                         className={selectedFile === "about-me.md" ? "file active-file" : "file"}
-                                        onClick={() => setSelectedFile("about-me.md")}>
+                                        onClick={() => openFile("about-me.md")}>
                                         <FileHeart size={14} />
                                         about-me.md
                                      </div>
@@ -93,7 +103,7 @@ function App() {
                                 <div className="folder-content">
                                     <div
                                         className={selectedFile === "projects.md" ? "file active-file" : "file"}
-                                        onClick={() => setSelectedFile("projects.md")}>
+                                        onClick={() => openFile("projects.md")}>
                                         <FileHeart size={14} />
                                         projects.md
                                     </div>
@@ -110,7 +120,7 @@ function App() {
                                 <div className="folder-content">
                                     <div
                                         className={selectedFile === "skills.md" ? "file active-file" : "file"}
-                                        onClick={() => setSelectedFile("skills.md")}>
+                                        onClick={() => openFile("skills.md")}>
                                         <FileHeart size={14} />
                                         skills.md
                                     </div>
@@ -128,7 +138,7 @@ function App() {
                                 <div className="folder-content">
                                     <div
                                         className={selectedFile === "education.md" ? "file active-file" : "file"}
-                                        onClick={() => setSelectedFile("education.md")}>
+                                        onClick={() => openFile("education.md")}>
                                         <FileHeart size={14} />
                                         education.md
                                     </div>
@@ -145,7 +155,7 @@ function App() {
                                 <div className="folder-content">
                                     <div
                                         className={selectedFile === "experience.md" ? "file active-file" : "file"}
-                                        onClick={() => setSelectedFile("experience.md")}>
+                                        onClick={() => openFile("experience.md")}>
                                         <FileHeart size={14} />
                                         experience.md
                                     </div>
@@ -161,10 +171,35 @@ function App() {
                     </div>
                 </aside>
 
+            <main className="editor">
+                <div className="editor-tabs">
+                    {openFiles.map((file) => (
+                        <div
+                            key={file}
+                            className={selectedFile === file ? "tab active-tab" : "tab"}
+                            onClick={() => setSelectedFile(file)}
+                        >
+                            {file}
 
-                <main className="editor">
+                            <button
+                                className="close-tab"
+                                onClick={(event) => {
+                                    event.stopPropagation()
+                                    closeFile(file)
+                                }}
+                            >
+                                <X size={14} />
+                            </button>
+                        </div>
+                    ))}
+                </div>
+
+                <div className="editor-content">
                     {fileContents[selectedFile]}
-                </main>
+                </div>
+
+            </main>
+
             </div>
 
             <footer className="status-bar">
