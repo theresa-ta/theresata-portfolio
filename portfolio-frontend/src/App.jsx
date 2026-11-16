@@ -1,8 +1,10 @@
 import './App.css'
-import { Folder, FileHeart, ChevronDown, ChevronRight, ArrowUpRight, X } from "lucide-react"
+import { Folder, FileHeart, ChevronDown, ChevronRight, ArrowUpRight, X, Files, Search, CircleAlert, Lightbulb } from "lucide-react"
+import { SiGithub } from "@icons-pack/react-simple-icons"
 import { useState } from 'react'
 
 function App() {
+    const [activeActivity, setActiveActivity] = useState("explorer")
     const [isRootOpen, setIsRootOpen] = useState(true)
     const [isAboutMeOpen, setIsAboutMeOpen] = useState(false)
     const [isProjectsOpen, setIsProjectsOpen] = useState(false)
@@ -60,7 +62,41 @@ function App() {
 
             <div className="workspace">
                 <aside className="activity-bar">
-                    Activity Bar
+
+                    <button
+                        className={activeActivity === "explorer" ? "activity-icon active-activity" : "activity-icon"}
+                        onClick={() => setActiveActivity("explorer")}
+                    >
+                        <Files size={22} />
+                    </button>
+
+                    <button
+                        className={activeActivity === "search" ? "activity-icon active-activity" : "activity-icon"}
+                        onClick={() => setActiveActivity("search")}
+                    >
+                        <Search size={22} />
+                    </button>
+
+                    <button
+                        className={activeActivity === "problems" ? "activity-icon active-activity" : "activity-icon"}
+                        onClick={() => setActiveActivity("problems")}
+                    >
+                        <CircleAlert size={22} />
+                    </button>
+
+                    <button
+                        className={activeActivity === "suggestions" ? "activity-icon active-activity" : "activity-icon"}
+                        onClick={() => setActiveActivity("suggestions")}
+                    >
+                        <Lightbulb size={22} />
+                    </button>
+
+                    <button
+                        className={activeActivity === "github" ? "activity-icon active-activity" : "activity-icon"}
+                        onClick={() => setActiveActivity("github")}
+                    >
+                        <SiGithub size={22} />
+                    </button>
                 </aside>
 
                 <aside className="file-explorer">
