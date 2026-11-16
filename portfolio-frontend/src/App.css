@@ -58,29 +58,21 @@ for .workspace, no flex direction listed = default = row
 }
 
 .file-explorer {
-  width: 240px;
-  background-color: #FAFAFFC9;
-  border-right: 1px solid #e7e5ed;
-  padding: 20px;
-  font-family: ui-monospace, monospace;
+  width: 260px;
+  flex-shrink: 0;
+  padding: 24px 14px;
+  background-color: #f8f5fc;
+  border-right: 1px solid #ebe8ef;
+  font-family: Consolas, "Courier New", monospace;
 }
 
 .explore-header {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  margin-bottom: 20px;
-  color: #77758a
+  margin: 0 10px 24px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #898392
 }
-
-.editor {
-  flex: 1;
-  padding: 32px;
-}
-/*
-.editor where flex: 1; tells editor to take up remaining available horizontal space
-after activity bar & file explorer take their widths
- */
 
 .status-bar {
   height: 28px;
@@ -95,13 +87,13 @@ this creates 1. bold + spaces. 2. light file font
   display: flex;
   align-items: center;
   gap: 7px;
-  font-family: system-ui, sans-serif;
-  font-size: 13px;
-  font-weight: 0;
-  padding: 8px 6px;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 9px 8px;
   cursor: pointer;
   color: #454358;
-  border-radius: 20px;
+  border-radius: 5px;
 }
 
 .folder-content {
@@ -117,23 +109,24 @@ this creates 1. bold + spaces. 2. light file font
 .file {
   display: flex;
   align-items: center;
-  gap: 7px;
-  font-size: 13px;
-  padding: 8px 6px;
-  color: #55536a;
+  gap: 8px;
+  font-size: 14px;
+  padding: 9px 8px;
+  color: #827b8d;
   cursor: pointer;
-  border-radius: 20px;
+  border-radius: 5px;
+  font-weight: 400;
 }
 
-.file:hover,
+.file:not(.active-file):hover,
 .folder-name:hover {
-  background-color: #f3f1f8;
+  background-color: #f0edf5;
 }
 
 .active-file {
-  background-color: #e8f0fe;
-  color: #2563eb;
-  font-weight: 600;
+  background-color: #dbe9fc;
+  color: #506581;
+  font-weight: 400;
 }
 
 .editor {
@@ -141,40 +134,58 @@ this creates 1. bold + spaces. 2. light file font
   flex-direction: column;
   flex: 1;
   min-width: 0;
+  padding: 0;
 }
+/*
+.editor where flex: 1; tells editor to take up remaining available horizontal space
+after activity bar & file explorer take their widths
+ */
 
 .editor-tabs {
   display: flex;
-  align-items: center;
-  background-color: #1e1e1e;
-  border-bottom: 1px solid #333;
+  align-items: stretch;
+  flex-shrink: 0;
+  min-height: 46px;
+  margin: 0;
+  padding: 0;
+  background-color: #f7f6fb;
+  border-bottom: 1px solid #ebe8ef;
 }
 
 .tab {
-  padding: 10px 16px;
-  font-size: 13px;
-  color: #999;
+  padding: 16px 20px;
   cursor: pointer;
-  border-right: 1px solid #333;
+  border: none;
+  border-top: 2px solid transparent;
+  border-right: 1px solid #ebe8ef;
+  background-color: transparent;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 10px;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 14px;
+  color: #9993a2;
+  font-weight: 300;
+  flex-shrink: 0;
 }
 
 .active-tab {
-  color: #fff;
-  background-color: #2d2d2d;
-  border-top: 2px solid #3794ff;
+  background-color: #ffffff;
+  border-top: 2px solid #d9b3c8;
+  color: #30364b;
+  font-weight: 500;
+
 }
 
 .editor-content {
   flex: 1;
   padding: 24px;
-  color: #ddd;
+  color: #85858f;
 }
 
 .close-tab {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   background: transparent;
@@ -187,6 +198,6 @@ this creates 1. bold + spaces. 2. light file font
 
 .close-tab:hover {
   color: white;
-  background-color: #444;
+  background-color: #ebe8ef;
   border-radius: 4px;
 }

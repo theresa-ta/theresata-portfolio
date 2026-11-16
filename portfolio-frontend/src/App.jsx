@@ -12,7 +12,13 @@ function App() {
     const [selectedFile, setSelectedFile] = useState("README.md")
     const [openFiles, setOpenFiles] = useState(["README.md"])
     const fileContents = {
-        "README.md": "Welcome to my portfolio!",
+        "README.md": ` 
+        # Welcome to my portfolio!
+
+        Hi, I'm Theresa.
+
+        I'm a Computer Science student interested in software engineering, backend development, and building reliable systems.
+        `,
         "about-me.md": "A little about me...",
         "projects.md": "Here are my projects.",
         "skills.md": "My technical skills.",
@@ -38,7 +44,11 @@ function App() {
         setOpenFiles(updatedFiles)
 
         if (selectedFile === fileName) {
-            setSelectedFile(updatedFiles[updatedFiles.length - 1] || "")
+            setSelectedFile(updatedFiles[updatedFiles.length - 1] || "README.md")
+
+            if (updatedFiles.length === 0) {
+                setOpenFiles(["README.md"])
+            }
         }
     }
 
