@@ -5,6 +5,8 @@ import { useState } from 'react'
 
 function App() {
     const [activeActivity, setActiveActivity] = useState("explorer")
+    const [isSearchOpen, setIsSearchOpen] = useState(false)
+    const [searchQuery, setSearchQuery] = useState("")
     const [isRootOpen, setIsRootOpen] = useState(true)
     const [isAboutMeOpen, setIsAboutMeOpen] = useState(false)
     const [isProjectsOpen, setIsProjectsOpen] = useState(false)
@@ -54,6 +56,9 @@ function App() {
         }
     }
 
+    const searchResults = Object.entries(fileContents).filter(([fileName, content]) => content.toLowerCase().includes(searchQuery.toLowerCase())
+    )
+
     return (
         <div className="app">
             <header className="top-navigation">
@@ -72,7 +77,10 @@ function App() {
 
                     <button
                         className={activeActivity === "search" ? "activity-icon active-activity" : "activity-icon"}
-                        onClick={() => setActiveActivity("search")}
+                        onClick={() => {
+                            setActiveActivity("search")
+                            setIsSearchOpen(!isSearchOpen)
+                        }}
                     >
                         <Search size={22} />
                     </button>
@@ -239,6 +247,51 @@ function App() {
                         </div>
                     ))}
                 </div>
+
+                {isSearchOpen && (
+                    <div className="search-panel">
+                        <div className="search-input-container">
+                            <Search size={18} />
+
+                            <input
+                                type="text"
+                                placeholder="Search..."
+                                autoFocus
+                                value={searchQuery}
+                                onChange={(event) => setSearchQuery(event.target.value)}
+                            />
+
+                            <button onClick={() => setIsSearchOpen(false)}>
+                                <X size={16} />
+                            </button>
+                        </div>
+                        {searchQuery && (
+                            <div className="search-results">
+                                {searchResults.length > 0 ? (
+                                    searchResults.map(([fileName, content]) => (
+                                        <div
+                                            key={fileName}
+                                            className="search-result"
+                                            onClick={() => {
+                                                openFile(fileName)
+                                                setIsSearchOpen(false)
+                                            }}
+                                        >
+                                            <div>{fileName}</div>
+                                            <div className="search-result-preview">
+                                                {content}
+                                            </div>
+                                        </div>
+                                    ))
+                                ) : (
+                                    <div className="no-results">
+                                        No matching files found.
+                                    </div>
+                                )}
+                            </div>
+                        )}
+                    </div>
+                )}
 
                 <div className="editor-content">
                     {fileContents[selectedFile]}
