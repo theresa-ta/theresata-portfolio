@@ -27,7 +27,7 @@ for .workspace, no flex direction listed = default = row
 */
 
 .app {
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   background-color: #FFFFFF;
@@ -48,6 +48,8 @@ for .workspace, no flex direction listed = default = row
 .workspace {
   display: flex;
   flex: 1;
+  min-height: 0;
+  oveflow: hidden;
 }
 
 .activity-bar {
@@ -274,4 +276,60 @@ after activity bar & file explorer take their widths
   padding: 12px;
   color: #898392;
   font-size: 13px;
+}
+
+.updates-panel {
+  height: var(--updates-height, 220px);
+  flex-shrink: 0;
+  background-color: #FAF6FB;
+  border-top: 1px solid #ebe8ef;
+  display: flex;
+  flex-direction: column;
+}
+
+.updates-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 18px;
+  border-bottom: 1px solid #ebe8ef;
+  color: #625477;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.updates-header button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: #898392;
+  cursor: pointer;
+}
+
+.updates-header button:hover {
+  color: #625477;
+}
+
+.updates-content {
+  padding: 16px 18px;
+  color: #85858f;
+  font-size: 13px;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.updates-resize-handle {
+  height: 5px;
+  width: 100%;
+  flex-shrink: 0;
+  cursor: ns-resize;
+  background-color: transparent;
+}
+
+.updates-resize-handle:hover {
+  background-color: #d9b3c8;
 }

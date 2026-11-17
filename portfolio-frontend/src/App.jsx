@@ -1,12 +1,16 @@
 import './App.css'
 import { Folder, FileHeart, ChevronDown, ChevronRight, ArrowUpRight, X, Files, Search, CircleAlert, Lightbulb } from "lucide-react"
 import { SiGithub } from "@icons-pack/react-simple-icons"
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 
 function App() {
     const [activeActivity, setActiveActivity] = useState("explorer")
     const [isSearchOpen, setIsSearchOpen] = useState(false)
     const [searchQuery, setSearchQuery] = useState("")
+    const [isUpdatesOpen, setIsUpdatesOpen] = useState(false)
+    const [updatesHeight, setUpdatesHeight] = useState(220)
+    const resizeStartY = useRef(0)
+    const resizeStartHeight = useRef(220)
     const [isRootOpen, setIsRootOpen] = useState(true)
     const [isAboutMeOpen, setIsAboutMeOpen] = useState(false)
     const [isProjectsOpen, setIsProjectsOpen] = useState(false)
@@ -61,6 +65,27 @@ function App() {
         content.toLowerCase().includes(searchQuery.toLowerCase())
     )
 
+    const startResizing = (event) => {
+        resizeStartY.current = event.clientY
+        resizeStartHeight.current = updatesHeight
+
+        const handleMouseMove = (moveEvent) => {
+            const difference = resizeStartY.current - moveEvent.clientY
+
+            const newHeight = resizeStartHeight.current + difference
+
+            setUpdatesHeight(Math.min(Math.max(newHeight, 120), 500))
+        }
+
+        const stopResizing = () => {
+            window.removeEventListener("mousemove", handleMouseMove)
+            window.removeEventListener("mouseup", stopResizing)
+        }
+
+        window.addEventListener("mousemove", handleMouseMove)
+        window.addEventListener("mouseup", stopResizing)
+    }
+
     return (
         <div className="app">
             <header className="top-navigation">
@@ -89,7 +114,10 @@ function App() {
 
                     <button
                         className={activeActivity === "problems" ? "activity-icon active-activity" : "activity-icon"}
-                        onClick={() => setActiveActivity("problems")}
+                        onClick={() => {
+                            setActiveActivity("problems")
+                            setIsUpdatesOpen(!isUpdatesOpen)
+                    }}
                     >
                         <CircleAlert size={22} />
                     </button>
@@ -298,6 +326,48 @@ function App() {
                 <div className="editor-content">
                     {fileContents[selectedFile]}
                 </div>
+
+                {isUpdatesOpen && (
+                    <div
+                        className="updates-panel"
+                        style={{ "--updates-height": `${updatesHeight}px`}}
+                    >
+                        <div
+                            className="updates-resize-handle"
+                            onMouseDown={startResizing}
+                        ></div>
+
+                        <div className="updates-header">
+                            <span>UPDATES</span>
+
+                            <button onClick={() => setIsUpdatesOpen(false)}>
+                                <X size={16} />
+                            </button>
+                        </div>
+
+                        <div className="updates-content">
+
+                            <div className="update-section">
+                                <h4>COMPLETED</h4>
+                                <p>Portfolio interface and file explorer</p>
+                                <p>Expandable folders and editor tabs</p>
+                                <p>Search functionality</p>
+                            </div>
+
+                            <div className="update-section">
+                                <h4>IN PROGRESS</h4>
+                                <p>Developer updates panel</p>
+                            </div>
+
+                            <div className="update-section">
+                                <h4>PLANNED</h4>
+                                <p>Spring Boot backend integration</p>
+                                <p>Database integration</p>
+                            </div>
+
+                        </div>
+                    </div>
+                )}
 
             </main>
 
