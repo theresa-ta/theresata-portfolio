@@ -56,7 +56,9 @@ function App() {
         }
     }
 
-    const searchResults = Object.entries(fileContents).filter(([fileName, content]) => content.toLowerCase().includes(searchQuery.toLowerCase())
+    const searchResults = Object.entries(fileContents).filter(([fileName, content]) =>
+        fileName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        content.toLowerCase().includes(searchQuery.toLowerCase())
     )
 
     return (
