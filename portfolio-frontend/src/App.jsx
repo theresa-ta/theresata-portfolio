@@ -11,6 +11,10 @@ function App() {
     const [updatesHeight, setUpdatesHeight] = useState(220)
     const resizeStartY = useRef(0)
     const resizeStartHeight = useRef(220)
+    const [isSuggestionsOpen, setIsSuggestionsOpen] = useState(false)
+    const [selectedCategory, setSelectedCategory] = useState("")
+    const [suggestionMessage, setSuggestionMessage] = useState("")
+    const [feedbackSubmitted, setFeedbackSubmitted] = useState(false)
     const [isRootOpen, setIsRootOpen] = useState(true)
     const [isAboutMeOpen, setIsAboutMeOpen] = useState(false)
     const [isProjectsOpen, setIsProjectsOpen] = useState(false)
@@ -86,6 +90,21 @@ function App() {
         window.addEventListener("mouseup", stopResizing)
     }
 
+    const handleSuggestionSubmit = () => {
+        if (!selectedCategory || !suggestionMessage.trim()) {
+            return
+        }
+
+        setFeedbackSubmitted(true)
+    }
+
+    const handleSuggestionsClose = () => {
+        setIsSuggestionsOpen(false)
+        setSelectedCategory("")
+        setSuggestionMessage("")
+        setFeedbackSubmitted(false)
+    }
+
     return (
         <div className="app">
             <header className="top-navigation">
@@ -124,7 +143,10 @@ function App() {
 
                     <button
                         className={activeActivity === "suggestions" ? "activity-icon active-activity" : "activity-icon"}
-                        onClick={() => setActiveActivity("suggestions")}
+                        onClick={() => {
+                            setActiveActivity("suggestions")
+                            setIsSuggestionsOpen(!isSuggestionsOpen)
+                        }}
                     >
                         <Lightbulb size={22} />
                     </button>
@@ -376,6 +398,89 @@ function App() {
             <footer className="status-bar">
                 Status Bar
             </footer>
+
+            {isSuggestionsOpen && (
+                <div className="suggestions-overlay">
+
+                    <div className="suggestions-window">
+
+                        <div className="suggestions-titlebar">
+                            <span>Portfolio Feedback</span>
+
+                            <button onClick={handleSuggestionsClose}>
+                                <X size={16} />
+                            </button>
+                        </div>
+
+                        <div className="suggestions-body">
+
+                            <div className="suggestions-assistant">
+
+                                <div className="assistant-avatar">
+                                    🐶
+                                </div>
+
+                                <div className="assistant-message">
+                                    <h3>Hey there!</h3>
+
+                                    <p>
+                                        Thanks for stopping by! Have an idea to make
+                                        this portfolio better? I'd love to hear it.
+                                    </p>
+                                </div>
+                            </div>
+
+                            {feedbackSubmitted && (
+                                <div className="feedback-success">
+                                    <h3>Woof! Thank you! 🐾</h3>
+                                    <p>Your feedback means a lot. Thanks for helping make this portfolio better!</p>
+                                </div>
+                            )}
+
+                            {!feedbackSubmitted && (
+                                <>
+                                    <div className="feedback-categories">
+                                        <h4>What's your feedback about?</h4>
+
+                                        <div className="category-options">
+                                            {["Design", "Functionality", "Content", "Other"].map((category) => (
+                                                <button
+                                                    key={category}
+                                                    className={selectedCategory === category ? "selected-category" : ""}
+                                                    onClick={() => setSelectedCategory(category)}
+                                                >
+                                                    {category}
+                                                </button>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    <div className="feedback-message">
+                                        <h4>Your suggestion</h4>
+
+                                        <textarea
+                                            placeholder="Share your thoughts..."
+                                            rows={4}
+                                            value={suggestionMessage}
+                                            onChange={(event) => setSuggestionMessage(event.target.value)}
+                                        />
+                                    </div>
+
+                                    <div className="feedback-submit">
+                                        <button onClick={handleSuggestionSubmit}>
+                                            Submit feedback <ArrowUpRight size={14} />
+                                        </button>
+                                    </div>
+                                </>
+                            )}
+
+                        </div>
+
+                    </div>
+
+                </div>
+            )}
+
         </div>
     )
 }
